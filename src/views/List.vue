@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="list">
     <h1>List</h1>
     <div class="row">
       <div class="input-field s4 col">
@@ -26,6 +26,7 @@
           <th>Status</th>
           <th>Open</th>
           <th>Delete</th>
+          <th>Complete</th>
         </tr>
       </thead>
       <tbody>
@@ -43,7 +44,15 @@
         </router-link>
       </td>
       <td>
-        <button type="button" @click="deleteTask" class="btn btn-small red">Del</button>
+        <button type="button" @click="deleteTask(task.id)" class="btn btn-small red">Del</button>
+      </td>
+      <td>
+        <p>
+      <label class="checkbox">
+        <input type="checkbox" @click="completeTaskList(task.id)"/>
+        <span></span>
+      </label>
+    </p>
       </td>
     </tr>
       </tbody>
@@ -68,16 +77,21 @@ export default {
               return true
             }
             return t.status === this.filter
-          })
+          }
+          ) 
         }
     },
     mounted() {
-      M.FormSelect.init(this.$refs.select)
+      M.FormSelect.init(this.$refs.select),
+      M.Modal.init(this.modal)
     },
     methods: {
-      deleteTask() {
-      this.$store.dispatch('deleteTask', this.task.id)
-      } 
+      deleteTask(id) {
+      this.$store.dispatch('deleteTask', id)
+      },
+      completeTaskList(id) {
+      this.$store.dispatch('completeTaskList', id)
+    },
     }
 }
 </script>
@@ -91,5 +105,15 @@ export default {
 }
 .length-td {
   max-width: 300px;
+}
+
+.checkbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.list {
+  margin-top: 10%;
 }
 </style>

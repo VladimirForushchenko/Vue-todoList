@@ -68,3 +68,10 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+
+.row {
+  margin-top: 5%;
+}
+</style>

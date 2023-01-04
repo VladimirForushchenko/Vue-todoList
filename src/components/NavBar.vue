@@ -30,5 +30,7 @@
 <style lang="scss" scoped>
   nav {
     padding: 0 2rem;
+    position: fixed;
+    top: 0;
   }
 </style>

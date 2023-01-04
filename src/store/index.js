@@ -40,8 +40,13 @@ export default new Vuex.Store({
       state.tasks[idx].status = 'completed'
       localStorage.setItem('tasks', JSON.stringify(state.tasks))
     },
+    completeTaskList (state, id) {
+      const idx = state.tasks.findIndex(t => t.id === id)
+      state.tasks[idx].status = 'completed'
+      localStorage.setItem('tasks', JSON.stringify(state.tasks))
+    },
     deleteTask (state, id) {
-      this.tasks = this.tasks.filter(t => t.id !==id)
+      state.tasks = state.tasks.filter(t => t.id !==id)
       localStorage.setItem('tasks', JSON.stringify(state.tasks))
     }
   },
@@ -54,6 +59,9 @@ export default new Vuex.Store({
     },
     completeTask( {commit}, id) {
       commit('completeTask', id)
+    },
+    completeTaskList( {commit}, id) {
+      commit('completeTaskList', id)
     },
     deleteTask( {commit}, id) {
       commit('deleteTask', id)

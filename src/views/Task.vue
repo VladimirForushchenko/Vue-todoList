@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <div v-if="task" class="col s6 offset-s3">
+    <div v-if="task" class="col s6 offset-s3" >
     <h1> {{ task.title }}</h1>
 
     <form @submit.prevent="submitHandler">
@@ -16,7 +16,7 @@
 
           <div v-if="task.status !== 'completed'">
             <button class="btn" type="submit">Update Task</button>
-            <button class="btn blue" type="button" @click="completeTask">Task comleted</button>
+            <button class="btn blue" type="button" @click="completeTask">Task completed</button>
           </div>
           
       </form>
@@ -84,10 +84,14 @@ export default {
 <style lang="scss" scoped>
 
 .materialize-textarea {
-  min-height: 200px;
+  min-height: 100px;
 }
 
 .btn {
   margin-right: 1rem;
+}
+
+.row {
+  margin-top: 5%;
 }
 </style>
